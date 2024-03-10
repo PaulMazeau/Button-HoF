@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #fff; 
+}
+
+
+html {
+    font-family: system-ui, sans-serif;
+}
+
+code {
+    font-family:
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* NavBar */
+
+.nav-links {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 8px;
+    border-bottom: 1px solid #545454;
+}
+
+.nav-links a {
+    height: 36px;
+    padding: 0 16px;
+    border: none;
+    background-color: #007bff; 
+    color: white; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    line-height: 36px; 
+    text-align: center; 
+}
+
+
+.nav-links a:hover {
+    background-color: #0056b3; 
+}

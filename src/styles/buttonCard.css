@@ -1,0 +1,35 @@
+.button-card {
+    --line: #e8e7e7;
+	--size: 24px;
+    width: 270px;
+    height: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    background:
+    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size);
+}
+
+/* Bouton Test */
+.btn-11 {
+    width: auto;
+    min-width: 64px;
+    padding: 0 16px;
+    height: 44px;
+    border-radius: 7px;
+    border: none;
+    background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .btn-11:hover {
+    cursor: pointer;
+    border: none;
+    background: rgb(186, 251, 33);
+      background: linear-gradient(0deg, rgb(44, 251, 33) 0%, rgb(242, 31, 112) 100%);
+      color: #fff;
+      overflow: hidden;
+  }
