@@ -5,7 +5,7 @@
 }
 
 :root {
-    --bg: #fff;
+    --bg: #f90000;
     --txt-color: black; 
 }
 
@@ -31,7 +31,7 @@ h1 {
     font-weight: 700;
     line-height: 1;
     text-align: center;
-    margin-bottom: 1em;
+    font-stretch: ultra-expanded;
 }
 
 .content {
