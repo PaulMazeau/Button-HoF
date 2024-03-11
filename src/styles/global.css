@@ -31,7 +31,7 @@ h1 {
     font-weight: 700;
     line-height: 1;
     text-align: center;
-    font-stretch: ultra-expanded;
+    transform: scaleX(3);
 }
 
 .content {
