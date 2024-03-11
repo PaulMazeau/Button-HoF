@@ -14,18 +14,6 @@ html {
     font-family: system-ui, sans-serif;
 }
 
-code {
-    font-family:
-        Menlo,
-        Monaco,
-        Lucida Console,
-        Liberation Mono,
-        DejaVu Sans Mono,
-        Bitstream Vera Sans Mono,
-        Courier New,
-        monospace;
-}
-
 h1 {
     font-size: 4rem;
     font-weight: 700;
@@ -42,12 +30,13 @@ h1 {
 /* NavBar */
 
 .nav-bar {
+    height: 40px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 8px 8px;
-    border-bottom: 1px solid #545454;
+    border-bottom: 2px solid black;
 }
 
 .logo, .links {
@@ -56,5 +45,6 @@ h1 {
     text-transform: uppercase;
     cursor: pointer;
     color: var(--txt-color);
+    font-weight: 900;
 }
 
