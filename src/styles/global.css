@@ -4,12 +4,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --bg: #f90000;
-    --txt-color: black; 
-}
-
-
 html {
     font-family: system-ui, sans-serif;
 }
@@ -44,7 +38,7 @@ h1 {
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
-    color: var(--txt-color);
+    color: black;
     font-weight: 900;
 }
 
