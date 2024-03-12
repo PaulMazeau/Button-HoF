@@ -4,8 +4,11 @@ import Navigation from '../components/Navigation.astro'
 import '../styles/global.css'
 import '../styles/homepage.css'
 ---
-<Navigation/>
+<Navigation/> 
 	<Layout title="Hall of Fame">
+		<audio id="backgroundMusic" loop preload="auto">
+			<source src="/TRAPAUL.mp3" type="audio/mp3">
+		  </audio> 
 		<div class="hero">
 			<h1>Hall Of Fame*</h1>
 			<h4>THREEJS ++ GSAP HoF</h4>
@@ -32,6 +35,25 @@ import '../styles/homepage.css'
 				</div>
 				<h4 class="showcase">SHOWCASE</h4>
 			</div>
+			<h4 id="audioControl" class="author" style="cursor:pointer;">ACTIVATE SOUND</h4>
 			<h4 class="author">@USER917531</h4>
+			<h4 class="author">TRACKS BY @LONES</h4>
 		</div>
 </Layout>
+<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+	const audio = document.getElementById('backgroundMusic') as HTMLAudioElement;
+	const audioControl = document.getElementById('audioControl');
+
+	audioControl.addEventListener('click', () => {
+		if (audio.paused) {
+		audio.play();
+		audioControl.textContent = 'DESACTIVATE SOUND';
+		} else {
+		audio.pause();
+		audioControl.textContent = 'ACTIVATE SOUND';
+		}
+	});
+	});
+
+</script>
