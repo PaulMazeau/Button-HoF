@@ -2,7 +2,37 @@
 import HeroContainer from '../../layouts/HeroContainer.astro'
 import '../../styles/global.css'
 import '../../styles/homepage.css'
+import '../../styles/hero/hero2.css'
 ---
 <HeroContainer title="Hero 2">
-	<h1>W.I.P2</h1>
+	<div id="grid"></div>
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	const gridContainer = document.getElementById('grid');
+	// Ajustez la hauteur du conteneur avant de calculer le nombre de carrés
+	gridContainer.style.height = `${window.innerHeight - 40}px`;
+
+	const numSquares = calculateNumberOfSquares(); // Cette fonction utilisera la nouvelle hauteur ajustée
+
+	for (let i = 0; i < numSquares; i++) {
+		const square = document.createElement('div');
+		square.classList.add('grid-item');
+		square.addEventListener('click', function() {
+		console.log('Carré cliqué:', i);
+		// Logique d'interaction ici
+		});
+		gridContainer.appendChild(square);
+	}
+	});
+
+	function calculateNumberOfSquares() {
+		const width = window.innerWidth;
+		const adjustedHeight = window.innerHeight - 40; // Hauteur de la fenêtre moins 40px
+		const squareSize = 10; // La taille de vos carrés
+		const squaresPerRow = Math.floor(width / squareSize);
+		const squaresPerColumn = Math.floor(adjustedHeight / squareSize);
+		return squaresPerRow * squaresPerColumn;
+	}
+		  
+	</script>
 </HeroContainer>

@@ -1,0 +1,7 @@
+.grid-item {
+    width: 10px; /* ou une autre dimension responsive */
+    height: 10px;
+    float: left;
+    border: 1px solid #ccc; /* Visualisation des carrés */
+  }
+  
