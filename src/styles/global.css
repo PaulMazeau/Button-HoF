@@ -43,3 +43,8 @@ h1 {
     font-weight: 900;
 }
 
+@media (max-width: 768px) {
+    h1 {
+        font-size: 4vw;
+    }
+}
