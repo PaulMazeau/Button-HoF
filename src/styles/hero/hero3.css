@@ -1,0 +1,183 @@
+body {
+    background-color: #fff;
+    height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+    cursor: crosshair;
+  }
+  
+  #gallery {
+    height: 75vmax;
+    width: 95vmax;
+    position: relative;
+  }
+  
+  .block {
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    z-index: 1;
+  }
+  
+  .block:hover {
+    z-index: 2;
+  }
+  
+  .block:nth-child(1) {
+    top: 0;
+    left: 10%;
+    background: url("./images/01.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  
+  .block:nth-child(2) {
+    top: 5%;
+    left: 0%;
+    background: url("./images/02.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  
+  .block:nth-child(3) {
+    top: 25%;
+    left: 15%;
+    background: url("./images/03.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(4) {
+    top: 50%;
+    left: 10%;
+    background: url("./images/04.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(5) {
+    top: 8%;
+    left: 20%;
+    background: url("./images/05.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(6) {
+    top: 40%;
+    left: 0%;
+    background: url("./images/06.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(7) {
+    top: 65%;
+    left: 3%;
+    background: url("./images/07.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(8) {
+    top: 75%;
+    left: 20%;
+    background: url("./images/08.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(9) {
+    top: 0;
+    left: 35%;
+    background: url("./images/09.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(10) {
+    top: 25%;
+    left: 40%;
+    background: url("./images/10.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(11) {
+    bottom: 0;
+    right: 35%;
+    background: url("./images/11.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(12) {
+    bottom: 75%;
+    right: 20%;
+    background: url("./images/12.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(13) {
+    bottom: 65%;
+    right: 3%;
+    background: url("./images/13.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(14) {
+    bottom: 35%;
+    right: 45%;
+    background: url("./images/14.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(15) {
+    bottom: 40%;
+    right: 0%;
+    background: url("./images/15.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(16) {
+    bottom: 8%;
+    right: 20%;
+    background: url("./images/16.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(17) {
+    bottom: 50%;
+    right: 5%;
+    background: url("./images/17.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(18) {
+    bottom: 25%;
+    right: 15%;
+    background: url("./images/18.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(19) {
+    bottom: 5%;
+    right: 3%;
+    background: url("./images/19.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(20) {
+    bottom: 0;
+    right: 10%;
+    background: url("./images/20.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(21) {
+    top: 2%;
+    left: 50%;
+    background: url("./images/21.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(22) {
+    top: 35%;
+    left: 63%;
+    background: url("./images/22.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(23) {
+    top: 45%;
+    left: 25%;
+    background: url("./images/23.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(24) {
+    top: 60%;
+    left: 27%;
+    background: url("./images/24.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(25) {
+    top: 12%;
+    left: 70%;
+    background: url("./images/25.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
+  .block:nth-child(26) {
+    bottom: 12%;
+    right: 70%;
+    background: url("./images/26.webp") no-repeat 50% 50%;
+    background-size: cover;
+  }
