@@ -4,35 +4,156 @@ import '../../styles/global.css'
 import '../../styles/homepage.css'
 import '../../styles/hero/hero2.css'
 ---
+
 <HeroContainer title="Hero 2">
-	<div id="grid"></div>
-	<script>
-	document.addEventListener('DOMContentLoaded', function() {
-	const gridContainer = document.getElementById('grid');
-	// Ajustez la hauteur du conteneur avant de calculer le nombre de carrés
-	gridContainer.style.height = `${window.innerHeight - 40}px`;
+	<div class="header">
+		<h1>
+		  Human stories, <br />
+		  Superhumanm audiovisuals
+		</h1>
+	  </div>
+	  <section class="slider-section">
+		<div class="wheel">
+		  <div class="wheel__card">
+			<img src="./images/01.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/02.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/03.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/04.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/05.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/06.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/07.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/08.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/09.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/10.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/01.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/02.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/03.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/04.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/05.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/06.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/07.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/08.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/09.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/10.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/01.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/02.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/03.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/04.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/05.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/06.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/07.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/08.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/09.webp" />
+		  </div>
+		  <div class="wheel__card">
+			<img src="./images/10.webp" />
+		  </div>
+		</div>
+	  </section>
+	  <script>
+		import { gsap } from "gsap";
+		import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+		import { ScrollTrigger } from "gsap/ScrollTrigger"; 
+		gsap.registerPlugin( ScrollTrigger, ScrollToPlugin ); 
 
-	const numSquares = calculateNumberOfSquares(); // Cette fonction utilisera la nouvelle hauteur ajustée
-
-	for (let i = 0; i < numSquares; i++) {
-		const square = document.createElement('div');
-		square.classList.add('grid-item');
-		square.addEventListener('click', function() {
-		console.log('Carré cliqué:', i);
-		// Logique d'interaction ici
+	let wheel = document.querySelector(".wheel") as HTMLElement;
+	let images = gsap.utils.toArray(".wheel__card");
+	
+	function setup() {
+	  let radius = wheel.offsetWidth / 2;
+	  let center = wheel.offsetWidth / 2;
+	  let total = images.length;
+	  let slice = (2 * Math.PI) / total;
+	
+	  images.forEach((item, i) => {
+		let angle = i * slice;
+		let el = item as HTMLElement;
+	
+		let x = center + radius * Math.sin(angle);
+		let y = center - radius * Math.cos(angle);
+	
+		gsap.set(el, {
+		  rotation: angle + "_rad",
+		  xPercent: -50,
+		  yPercent: -50,
+		  x: x,
+		  y: y,
 		});
-		gridContainer.appendChild(square);
+	  });
 	}
+	
+	gsap.to(".wheel", {
+	  rotate: () => -360,
+	  ease: "none",
+	  duration: images.length,
+	  scrollTrigger: {
+		start: 0,
+		end: "max",
+		scrub: 1,
+		snap: 1 / images.length,
+		invalidateOnRefresh: true,
+	  },
 	});
-
-	function calculateNumberOfSquares() {
-		const width = window.innerWidth;
-		const adjustedHeight = window.innerHeight - 40; // Hauteur de la fenêtre moins 40px
-		const squareSize = 10; // La taille de vos carrés
-		const squaresPerRow = Math.floor(width / squareSize);
-		const squaresPerColumn = Math.floor(adjustedHeight / squareSize);
-		return squaresPerRow * squaresPerColumn;
-	}
-		  
+	
+	setup();
+	window.addEventListener("resize", setup);
+	
 	</script>
 </HeroContainer>
+
