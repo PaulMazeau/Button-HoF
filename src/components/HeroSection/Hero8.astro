@@ -55,6 +55,7 @@ import '../../styles/hero/hero8.css'
       const clamp = (val, min, max) => Math.max(min, Math.min(val, max));
   
       class DragScroll {
+      [x: string]: any;
         constructor(obj) {
           this.el = document.querySelector(obj.el);
           this.wrap = this.el.querySelector(obj.wrap);
