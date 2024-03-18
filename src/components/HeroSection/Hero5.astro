@@ -76,7 +76,7 @@ import '../../styles/hero/hero5.css'
         
         document.addEventListener("DOMContentLoaded", function () {
           const productCopy = document.querySelector(".product-copy");
-          const productImage = document.querySelector(".product-img img");
+          const productImage = document.querySelector(".product-img img") as HTMLImageElement;
           const segmentHeight =
             (productCopy.scrollHeight - window.innerHeight) / 8;
   
