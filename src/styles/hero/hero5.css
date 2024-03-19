@@ -1,30 +1,3 @@
-:root {
-    --color-bg: #82837d;
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    background: var(--color-bg);
-    font-family: "Space Mono", sans-serif;
-  }
-  
-  .nav {
-    position: fixed;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    z-index: 2;
-  }
-  
   .btn-group {
     display: flex;
     gap: 10px;
@@ -32,21 +5,16 @@
   
   button {
     padding: 5px 15px 6px 15px;
-    border: 1px solid #000;
-    border-radius: 2.5em;
-    color: #000;
+    background-color: black;
+    color: white;
     margin-left: 5px;
-    background-color: rgba(130, 131, 125, 0.5);
-    font-family: "Space Mono", sans-serif;
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.6) !important;
     border: none;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 16px;
   }
   
   button.active {
     border: 1px solid #000;
-    box-shadow: none !important;
   }
   
   i {
@@ -119,12 +87,18 @@
     font-size: 12px;
   }
   
+  .size:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+
   button.size-btn {
     position: relative;
     margin: 50px 0;
     width: 50%;
     padding: 20px;
-    color: #323232;
+    color: white;
   }
   
   button.size-btn i {
@@ -143,10 +117,16 @@
     width: 50%;
     margin-bottom: 50px;
   }
+
+  .product-name {
+    font-size: 24;
+    font-weight: 900;
+    font-stretch: ultra-expanded;
+  }
   
   .product img {
     width: 120px;
-  }
+  }  
   
   @media (max-width: 900px) {
     .product-img {
