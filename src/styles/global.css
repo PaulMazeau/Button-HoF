@@ -17,6 +17,10 @@ h1 {
     transform: scaleX(3);
 }
 
+.wip {
+    margin-top: 40px;
+}
+
 .content {
     max-width: 1200px;
     margin: auto;
