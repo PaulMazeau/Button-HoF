@@ -63,6 +63,7 @@ const Hero2 = () => {
 
   return (
     <HeroContainer title="Hero 2">
+      <div className="container-animation">
       <div className="header">
         <h1>
           Human stories, <br />
@@ -78,6 +79,7 @@ const Hero2 = () => {
           ))}
         </div>
       </section>
+      </div>
     </HeroContainer>
   );
 };

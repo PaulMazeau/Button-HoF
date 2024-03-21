@@ -4,7 +4,7 @@ body::-webkit-scrollbar {
 
 :root{ scrollbar-width: none }
 
-body {
+.container-animation {
   padding: 0;
   margin: 0;
   height: 600vh;
