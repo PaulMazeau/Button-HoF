@@ -39,7 +39,7 @@
     background-color: #fd5530;
   }
   
-  .img-blocks {
+  .img-pixels {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -49,7 +49,7 @@
     justify-content: space-between;
   }
   
-  .block {
+  .pixel {
     width: 50px;
     height: 50px;
     opacity: 0;
@@ -58,7 +58,7 @@
     transition: opacity 0.3s ease-in;
   }
   
-  .block.active {
+  .pixel.active {
     opacity: 0.75;
   }
   
