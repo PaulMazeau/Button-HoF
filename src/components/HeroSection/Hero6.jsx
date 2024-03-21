@@ -26,7 +26,7 @@ const Hero6 = () => {
       { top: "80%", left: "70%" },
     ];
 
-    const imgs = gsap.utils.toArray(".img", containerRef.current);
+    const imgs = gsap.utils.toArray(".img-hero6", containerRef.current);
     gsap.set(imgs, {
       top: "45%",
       left: "50%",
@@ -80,7 +80,7 @@ const Hero6 = () => {
           </div>
         </div>
         <div class="gallery">
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/01.webp" alt="" />
           </div>
           <div class="img">
