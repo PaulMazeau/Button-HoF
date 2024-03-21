@@ -12,31 +12,64 @@ const Hero5 = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-    // Animation pour le défilement de l'image du produit
+  
+    // Déterminez la hauteur du segment pour le changement d'images
     const productCopy = document.querySelector(".product-copy");
     const segmentHeight = (productCopy.scrollHeight - window.innerHeight) / 8;
-
-    const scrollAnimation = () => {
-      let currentSegment = Math.floor(window.scrollY / segmentHeight) + 1;
-      currentSegment = Math.min(9, Math.max(1, currentSegment));
-      if (productImageRef.current) {
-        productImageRef.current.src = `./images/product-page/${currentSegment}.png`;
+  
+    // Utilisation de ScrollTrigger pour le changement d'image basé sur le défilement
+    ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      onUpdate: (self) => {
+        let currentSegment = Math.floor(self.scroll() / segmentHeight) + 1;
+        currentSegment = Math.min(9, Math.max(1, currentSegment));
+        if (productImageRef.current) {
+          productImageRef.current.src = `./images/product-page/${currentSegment}.png`;
+        }
       }
-    };
-    window.addEventListener("scroll", scrollAnimation);
-
-    // Animations GSAP pour les différents éléments
-    gsap.from(".product-img", { duration: 0.5, x: -100, opacity: 0, delay: 0.5 });
-    gsap.from(".product-vars img", { duration: 0.5, y: 50, opacity: 0, stagger: 0.2, delay: 0.75 });
-    gsap.from(".product-size .size", { duration: 0.5, x: 50, opacity: 0, stagger: 0.025, delay: 1 });
-    gsap.from(".size-btn", { duration: 0.3, scale: 0, delay: 1.25 });
-    gsap.from(".product", { duration: 0.5, y: 50, opacity: 0, stagger: 0.25, delay: 1.5 });
-
-    return () => {
-      window.removeEventListener("scroll", scrollAnimation);
-    };
+    });
+  
+    // Animations GSAP pour les différents éléments avec gestion optimisée du défilement
+    gsap.from(".product-img", { 
+      duration: 0.5, 
+      x: -100, 
+      opacity: 0, 
+      delay: 0.5 
+    });
+  
+    gsap.from(".product-vars img", { 
+      duration: 0.5, 
+      y: 50, 
+      opacity: 0, 
+      stagger: 0.2, 
+      delay: 0.75 
+    });
+  
+    gsap.from(".product-size .size", { 
+      duration: 0.5, 
+      x: 50, 
+      opacity: 0, 
+      stagger: 0.025, 
+      delay: 1 
+    });
+  
+    gsap.from(".size-btn", { 
+      duration: 0.3, 
+      scale: 0, 
+      delay: 1.25 
+    });
+  
+    gsap.from(".product", { 
+      duration: 0.5, 
+      y: 50, 
+      opacity: 0, 
+      stagger: 0.25, 
+      delay: 1.5 
+    });
+    
   }, []);
+  
 
   // Le JSX simplifié pour inclure les références et autres adaptations
   return (
