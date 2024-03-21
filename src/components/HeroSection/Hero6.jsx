@@ -74,11 +74,9 @@ const Hero6 = () => {
       <div class="header">
           <div class="text">
             <p>In a future</p>
-            <div class="text-revealer"></div>
           </div>
           <div class="text">
             <p>not too distant</p>
-            <div class="text-revealer"></div>
           </div>
         </div>
         <div class="gallery">
