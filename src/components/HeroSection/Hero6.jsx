@@ -83,43 +83,43 @@ const Hero6 = () => {
           <div class="img-hero6">
             <img src="./images/01.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/02.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/03.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/04.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/05.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/06.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/07.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/08.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/09.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/10.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/11.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/01.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/02.webp" alt="" />
           </div>
-          <div class="img">
+          <div class="img-hero6">
             <img src="./images/03.webp" alt="" />
           </div>
         </div>
