@@ -64,7 +64,7 @@ const Hero2 = () => {
   return (
     <HeroContainer title="Hero 2">
       <div className="container-animation">
-      <div className="header">
+      <div className="header-scroll">
         <h1>
           Human stories, <br />
           Superhuman audiovisuals

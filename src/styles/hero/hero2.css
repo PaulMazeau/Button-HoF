@@ -12,7 +12,7 @@ body::-webkit-scrollbar {
   overflow: auto;
 }
 
-.header {
+.header-scroll {
   position: fixed;
   top: 0;
   left: 0;
