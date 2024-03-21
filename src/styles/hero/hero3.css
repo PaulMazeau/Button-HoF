@@ -1,11 +1,3 @@
-body {
-    background-color: #fff;
-    height: 100vh;
-    margin: 0px;
-    overflow: hidden;
-    cursor: crosshair;
-  }
-  
   #gallery {
     height: 75vmax;
     width: 95vmax;
