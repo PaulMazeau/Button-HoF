@@ -1,12 +1,6 @@
 * {
     box-sizing: border-box;
   }
-  body {
-    background: #fff;
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-  }
   
   .nav {
     position: fixed;
