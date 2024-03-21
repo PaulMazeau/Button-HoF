@@ -27,7 +27,7 @@ const Hero4 = () => {
     ScrollTrigger.create({
       start: 0,
       end: "+=3000",
-      pin: ".gallery",
+      pin: ".gallery-hero4",
       onUpdate(self) {
         if (self.progress === 1 && self.direction > 0 && !self.wrapping) {
           wrapForward(self);
@@ -142,7 +142,7 @@ const Hero4 = () => {
 
   return (
     <HeroContainer title="Hero4">
-      <div className="gallery">
+      <div className="gallery-hero4">
         <ul className="cards">
           {Array.from({ length: 20 }, (_, i) => (
             <li key={i}></li>
