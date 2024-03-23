@@ -1,5 +1,6 @@
 import React, { useState, Suspense, lazy } from 'react';
 import Navbar from './components/NavigationHero';
+import './styles/global.css'
 
 const Hero1 = lazy(() => import('./components/HeroSection/Hero1'));
 const Hero2 = lazy(() => import('./components/HeroSection/Hero2'));
