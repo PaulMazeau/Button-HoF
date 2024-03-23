@@ -32,11 +32,10 @@ function HeroDisplayer() {
   return (
     <div>
       <Navbar onPreviousClick={goToPreviousHero} onNextClick={goToNextHero} />
-      <div className='loading-container'>
+      <Suspense fallback={
+        <div className='loading-container'>
           <img src={`Loading.png`} alt="Description" className='loading-image'/>
         </div>
-      <Suspense fallback={
-        <div>chargement</div>
       }>
         <CurrentHero />
       </Suspense>
