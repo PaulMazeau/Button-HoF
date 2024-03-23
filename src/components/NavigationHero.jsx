@@ -11,10 +11,10 @@ const Navbar = ({ onPreviousClick, onNextClick }) => {
     const toggleSound = () => {
       if (audio.paused) {
         audio.play();
-        audioControl.textContent = 'SOUND OFF';
+        audioControl.textContent = 'SOUND ON';
       } else {
         audio.pause();
-        audioControl.textContent = 'SOUND ON';
+        audioControl.textContent = 'SOUND OFF';
       }
     };
 
