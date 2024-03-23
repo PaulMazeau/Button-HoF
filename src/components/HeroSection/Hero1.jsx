@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import HeroContainer from '../../layouts/HeroContainer'; // Assurez-vous que HeroContainer est un composant React
+import HeroContainer from '../../layouts/HeroContainer';
 import '../../styles/global.css';
 import '../../styles/homepage.css';
 import '../../styles/hero/hero1.css';

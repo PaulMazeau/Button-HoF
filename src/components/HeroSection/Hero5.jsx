@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import HeroContainer from '../../layouts/HeroContainer'; // Assurez-vous que HeroContainer est adapté à React
+import HeroContainer from '../../layouts/HeroContainer';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
@@ -7,17 +7,16 @@ import '../../styles/global.css';
 import '../../styles/homepage.css';
 import '../../styles/hero/hero5.css';
 
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 const Hero5 = () => {
   const productImageRef = useRef(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
   
-    // Déterminez la hauteur du segment pour le changement d'images
     const productCopy = document.querySelector(".product-copy");
     const segmentHeight = (productCopy.scrollHeight - window.innerHeight) / 8;
   
-    // Utilisation de ScrollTrigger pour le changement d'image basé sur le défilement
     ScrollTrigger.create({
       start: 0,
       end: "max",
@@ -30,7 +29,6 @@ const Hero5 = () => {
       }
     });
   
-    // Animations GSAP pour les différents éléments avec gestion optimisée du défilement
     gsap.from(".product-img", { 
       duration: 0.5, 
       x: -100, 

@@ -7,9 +7,11 @@ import '../../styles/global.css';
 import '../../styles/homepage.css';
 import '../../styles/hero/hero2.css';
 
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 const Hero2 = () => {
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 
     let wheel = document.querySelector(".wheel");
     let images = gsap.utils.toArray(".wheel__card");

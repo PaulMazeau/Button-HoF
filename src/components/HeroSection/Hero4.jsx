@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
-import HeroContainer from '../../layouts/HeroContainer'; // Assurez-vous que HeroContainer est un composant React valide
+import HeroContainer from '../../layouts/HeroContainer'; 
 import '../../styles/global.css';
 import '../../styles/homepage.css';
 import '../../styles/hero/hero4.css';
 
-// Enregistrement des plugins GSAP hors du composant pour éviter des enregistrements multiples
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Hero4 = () => {

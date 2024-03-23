@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import HeroContainer from '../../layouts/HeroContainer'; // Assurez-vous d'avoir adapté HeroContainer pour React
+import HeroContainer from '../../layouts/HeroContainer';
 import gsap from 'gsap';
 import '../../styles/global.css';
 import '../../styles/homepage.css';
@@ -37,17 +37,16 @@ const Hero8 = () => {
     // Event listeners for mouse and touch
     const handleWheel = (e) => move(e.deltaY);
     const handleTouchStart = (e) => e.preventDefault();
-    const handleTouchMove = (e) => {}; // Implement touch move logic here
-    const handleTouchEnd = () => {}; // Implement touch end logic here
+    const handleTouchMove = (e) => {};
+    const handleTouchEnd = () => {}; 
 
-    // Add event listeners
     window.addEventListener("resize", calculate);
     el.addEventListener("wheel", handleWheel);
     el.addEventListener("touchstart", handleTouchStart, { passive: false });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("touchend", handleTouchEnd);
 
-    calculate(); // Initial calculation
+    calculate();
 
     // Cleanup function
     return () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import HeroContainer from '../../layouts/HeroContainer'; // Adaptez votre HeroContainer pour React
+import HeroContainer from '../../layouts/HeroContainer'; 
 import gsap from 'gsap';
 import '../../styles/global.css';
 import '../../styles/homepage.css';
@@ -99,7 +99,7 @@ useEffect(() => {
 
     const link = document.createElement("a");
     link.href = itemData.link;
-    link.innerHTML = itemData.icon; // Sécurité: Assurez-vous que itemData.icon est sûr
+    link.innerHTML = itemData.icon;
     item.appendChild(link);
 
     gallery.appendChild(item);

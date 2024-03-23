@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import HeroContainer from '../../layouts/HeroContainer'; // Assurez-vous que HeroContainer est adapté à React
+import HeroContainer from '../../layouts/HeroContainer';
 import gsap from 'gsap';
 import '../../styles/global.css';
 import '../../styles/homepage.css';
