@@ -27,6 +27,19 @@ h1 {
     margin: auto;
 }
 
+/* Loading */
+.loading-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: auto;
+}
+
+.loading-image {
+    width: 100%;
+    height: auto;
+}
 /* NavBar */
 
 .nav-bar {
