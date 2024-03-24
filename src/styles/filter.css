@@ -30,3 +30,13 @@
 .filter-element {
     cursor: pointer;
 }
+
+.loading-container-filter {
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.loading-image-filter {
+    width: 350px;
+    height: auto;
+}
