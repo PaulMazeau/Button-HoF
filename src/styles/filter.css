@@ -1,0 +1,24 @@
+:root {
+    --gap: 20px;
+    --columns: 12
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns)));
+    gap: var(--gap);
+    margin: 60px 20px 20px 20px;
+    height: calc(100vh - 80px);
+}
+
+.grid-item-red {
+    background-color: red;
+    grid-column: span 9;
+    text-align: center;
+}
+
+.grid-item-blue {
+    background-color: blue;
+    grid-column: span 3; /* Prendra 3 colonnes */
+    padding: 10px;
+}
