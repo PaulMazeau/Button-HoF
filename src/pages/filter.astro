@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro'
+import FilterDisplayer from '../FilterDisplayer'
 import '../styles/global.css'
 import '../styles/homepage.css'
 import '../styles/filter.css'
 ---
+
 <Navigation/>
 	<Layout title="Filter Gallery">
-		<div class="grid-container">
-			<div class="grid-item-blue">Texte</div>
-			<div class="grid-item-red">Cam Filter</div>
-		  </div>  
+		<FilterDisplayer client:load/>		  
 </Layout>
