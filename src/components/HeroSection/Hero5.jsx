@@ -16,6 +16,46 @@ const Hero5 = () => {
   
     const productCopy = document.querySelector(".product-copy");
     const segmentHeight = (productCopy.scrollHeight - window.innerHeight) / 8;
+    function randomCharacter() {
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      return chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    function revealText(element) {
+      const originalText = element.textContent.trim(); // Utilisez textContent directement
+      let revealedText = '';
+      let index = 0;
+
+      function revealNextLetter() {
+        if (index < originalText.length) {
+          revealedText += originalText[index];
+          let tempText = revealedText;
+
+          for (let i = index + 1; i < originalText.length; i++) {
+            tempText += randomCharacter();
+          }
+
+          element.textContent = tempText;
+          index++;
+
+          setTimeout(revealNextLetter, 50);
+        } else {
+          element.textContent = originalText;
+        }
+      }
+
+      revealNextLetter();
+    }
+
+    // Sélectionnez tous les éléments <p> avec l'attribut data-text pour l'effet de révélation
+    const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span'); // Ajustez cette sélection selon vos besoins
+    textElements.forEach((element) => {
+      // Appliquer l'effet seulement si l'élément contient du texte visible
+      if (element.textContent.trim().length > 0) {
+        revealText(element);
+      }
+    });
+
   
     ScrollTrigger.create({
       start: 0,
