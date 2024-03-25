@@ -68,7 +68,6 @@ const HomePage = () => {
 
   return (
     <HeroContainer title="Hero 1">
-      <h1 className='wip'>W.I.P</h1>
       <div id="cursor-word">CLICK</div>
       <canvas id="draw"></canvas>
     </HeroContainer>
