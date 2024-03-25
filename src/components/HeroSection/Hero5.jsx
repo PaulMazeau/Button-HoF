@@ -68,8 +68,6 @@ const Hero5 = () => {
     
   }, []);
   
-
-  // Le JSX simplifié pour inclure les références et autres adaptations
   return (
     <HeroContainer title="Hero 5">
       <div className="page-content">

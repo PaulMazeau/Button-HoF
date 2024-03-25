@@ -19,11 +19,9 @@ function HeroDisplayer() {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
   const goToNextHero = () => {
-    console.log("Aller au Hero suivant");
     setCurrentHeroIndex((index) => (index + 1) % heroes.length);
   };
   const goToPreviousHero = () => {
-    console.log("Aller au Hero précédent");
     setCurrentHeroIndex((index) => (index - 1 + heroes.length) % heroes.length);
   };
 
