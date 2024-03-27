@@ -25,14 +25,14 @@ const Navbar = ({ onPreviousClick, onNextClick }) => {
   }, []);
 
   return (
-    <div class="nav-bar">
-        <a id="prev-hero" class="links" onClick={onPreviousClick}>Previous hero</a>
-        <a class="links" href="/">Back Home</a>
-        <a id="audioControl" class="links" onClick={() => {}}>Sound Off</a> 
-        <a id="next-hero" class="links" onClick={onNextClick}>Next hero</a>
-        <audio id="backgroundMusic" loop preload="auto" transition:persist>
+    <div className="nav-bar">
+        <a id="prev-hero" className="links" onClick={onPreviousClick}>Previous hero</a>
+        <a className="links" href="/">Back Home</a>
+        <a id="audioControl" className="links" onClick={() => {}}>Sound Off</a> 
+        <a id="next-hero" className="links" onClick={onNextClick}>Next hero</a>
+        <audio id="backgroundMusic" loop preload="auto">
             <source src="/TRAPAUL.mp3" type="audio/mp3" />
-        </audio> 
+        </audio>
     </div>
   );
 };

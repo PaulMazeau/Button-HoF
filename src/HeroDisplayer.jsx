@@ -10,8 +10,6 @@ const Hero5 = lazy(() => import('./components/HeroSection/Hero5'));
 const Hero6 = lazy(() => import('./components/HeroSection/Hero6'));
 const Hero7 = lazy(() => import('./components/HeroSection/Hero7'));
 const Hero8 = lazy(() => import('./components/HeroSection/Hero8'));
-//const Hero9 = lazy(() => import('./components/HeroSection/Hero9'));
-//const Hero10 = lazy(() => import('./components/HeroSection/Hero10'));
 
 const heroes = [Hero1, Hero2, Hero3, Hero4, Hero5, Hero6, Hero7, Hero8];
 
