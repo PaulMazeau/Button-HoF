@@ -66,7 +66,18 @@ const Hero6 = () => {
         ease: "power2.out",
       });
     }
+    imgs.forEach((img) => {
+      img.addEventListener('mouseenter', () => {
+        gsap.to(img, { scale: 3.1, duration: 0.6, ease: 'power1.inOut' });
+      });
+
+      img.addEventListener('mouseleave', () => {
+        gsap.to(img, { scale: 1, duration: 0.6, ease: 'power1.inOut' });
+      });
+    });
+
   }, []);
+
 
   return (
     <HeroContainer title="Hero 6">
