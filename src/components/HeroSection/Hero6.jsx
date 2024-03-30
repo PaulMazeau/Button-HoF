@@ -7,6 +7,7 @@ import '../../styles/hero/hero6.css';
 
 const Hero6 = () => {
   const containerRef = useRef(null);
+  const hoverEffectAllowedRef = useRef(false);
 
   useEffect(() => {
     const positions = [
@@ -64,18 +65,33 @@ const Hero6 = () => {
         stagger: 0.075,
         duration: 0.75,
         ease: "power2.out",
+        onComplete: () => hoverEffectAllowedRef.current = true,
       });
     }
+
+     // Ajout des écouteurs pour l'effet de survol
     imgs.forEach((img) => {
-      img.addEventListener('mouseenter', () => {
-        gsap.to(img, { scale: 3.1, duration: 0.6, ease: 'power1.inOut' });
-      });
+      const handleMouseEnter = () => {
+        if (hoverEffectAllowedRef.current) {
+          gsap.to(img, { scale: 3.1, duration: 0.6, ease: 'power1.inOut' });
+        }
+      };
 
-      img.addEventListener('mouseleave', () => {
-        gsap.to(img, { scale: 1, duration: 0.6, ease: 'power1.inOut' });
-      });
+      const handleMouseLeave = () => {
+        if (hoverEffectAllowedRef.current) {
+          gsap.to(img, { scale: 1, duration: 0.6, ease: 'power1.inOut' });
+        }
+      };
+
+      img.addEventListener('mouseenter', handleMouseEnter);
+      img.addEventListener('mouseleave', handleMouseLeave);
+
+      // Cleanup pour retirer les écouteurs d'événements
+      return () => {
+        img.removeEventListener('mouseenter', handleMouseEnter);
+        img.removeEventListener('mouseleave', handleMouseLeave);
+      };
     });
-
   }, []);
 
 
