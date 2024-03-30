@@ -18,6 +18,7 @@
     animation: flashing .3s infinite;
     z-index: 10;
     pointer-events: none;
+    display: block;
 }
 
 .wip {
