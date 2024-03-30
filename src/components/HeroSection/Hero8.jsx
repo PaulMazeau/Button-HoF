@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import HeroContainer from '../../layouts/HeroContainer';
 import gsap from 'gsap';
 import '../../styles/global.css';
@@ -9,28 +9,25 @@ const Hero8 = () => {
   const sliderRef = useRef(null);
   const wrapperRef = useRef(null);
   const progressBarRef = useRef(null);
-  const [sliderItems, setSliderItems] = useState([]);
 
   useEffect(() => {
     const el = sliderRef.current;
     const wrap = wrapperRef.current;
     const bar = progressBarRef.current;
-    const items = sliderItems;
     let progress = 0;
     let startX = 0;
-    let wrapWidth = 0;
     let maxScroll = 0;
     let isDragging = false;
 
     const calculate = () => {
-      wrapWidth = items[0]?.clientWidth * items.length;
+      const items = wrap.children;
+      const wrapWidth = items[0]?.clientWidth * items.length;
       wrap.style.width = `${wrapWidth}px`;
       maxScroll = wrapWidth - el.clientWidth;
     };
 
     const move = (delta) => {
       progress = Math.max(0, Math.min(progress + delta, maxScroll));
-
       gsap.to(wrap, { x: -progress, ease: "none" });
       gsap.to(bar, { scaleX: progress / maxScroll, transformOrigin: "left", ease: "none" });
     };
@@ -44,35 +41,32 @@ const Hero8 = () => {
     const handleTouchMove = (e) => {
       if (!isDragging) return;
       const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-      const delta = (startX - x) * 2; // Adjust multiplier for sensitivity
-      move(delta);
+      move((startX - x) * 2); // Adjust multiplier for sensitivity
       startX = x;
       e.preventDefault();
     };
 
-    const handleTouchEnd = () => {
-      isDragging = false;
-    };
-
     el.addEventListener("mousedown", handleTouchStart);
     window.addEventListener("mousemove", handleTouchMove);
-    window.addEventListener("mouseup", handleTouchEnd);
+    window.addEventListener("mouseup", () => isDragging = false);
     el.addEventListener("touchstart", handleTouchStart, { passive: false });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
-    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("touchend", () => isDragging = false);
 
     calculate();
+    window.addEventListener("resize", calculate);
 
     // Cleanup function
     return () => {
       el.removeEventListener("mousedown", handleTouchStart);
       window.removeEventListener("mousemove", handleTouchMove);
-      window.removeEventListener("mouseup", handleTouchEnd);
+      window.removeEventListener("mouseup", () => isDragging = false);
       el.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("touchend", () => isDragging = false);
+      window.removeEventListener("resize", calculate);
     };
-  }, [sliderItems]); // Make sure to re-bind events if sliderItems change
+  }, []);
 
   return (
     <HeroContainer title="Hero 8">
@@ -80,12 +74,7 @@ const Hero8 = () => {
       <div className="slider" ref={sliderRef}>
         <div className="slider-wrapper" ref={wrapperRef}>
           {Array.from({ length: 6 }).map((_, index) => (
-            <div className="slider-item" key={index} ref={(el) => {
-              // Ensure we're not overwriting existing refs
-              if (el && !sliderItems.includes(el)) {
-                setSliderItems((prevItems) => [...prevItems, el]);
-              }
-            }}>
+            <div className="slider-item" key={index}>
               <figure>
                 <img src={`./images/0${index + 1}.webp`} alt="" />
               </figure>

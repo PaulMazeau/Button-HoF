@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import HeroContainer from '../../layouts/HeroContainer'; 
+import React, { useEffect } from 'react';
+import HeroContainer from '../../layouts/HeroContainer';
 import gsap from 'gsap';
 import '../../styles/global.css';
 import '../../styles/homepage.css';
@@ -83,50 +83,41 @@ const itemPositions = [
 ];
 
 const Hero3 = () => {
-useEffect(() => {
-  const gallery = document.querySelector(".gallery-hero3");
+  useEffect(() => {
+    const moveItems = (e) => {
+      items.forEach((item, index) => {
+        const animationFactor = item.parllaxSpeed;
+        const deltaX = (e.clientX - window.innerWidth / 2) * animationFactor;
+        const deltaY = (e.clientY - window.innerHeight / 2) * animationFactor;
 
-  items.forEach((itemData, index) => {
-    const position = itemPositions[index];
-    const item = document.createElement("div");
-    item.classList.add("item-hero3");
-    item.style.top = position.top;
-    item.style.left = position.left;
+        gsap.to(`.item-hero3-${index}`, { x: deltaX, y: deltaY, duration: 0.75 });
+      });
+    };
 
-    const img = document.createElement("img");
-    img.src = itemData.img;
-    img.classList.add("img-hero3");
-    img.style.opacity = "0.5";
-    item.appendChild(img);
+    document.addEventListener("mousemove", moveItems);
 
-    const link = document.createElement("a");
-    link.href = itemData.link;
-    link.innerHTML = itemData.icon;
-    item.appendChild(link);
+    // Cleanup function
+    return () => {
+      document.removeEventListener("mousemove", moveItems);
+    };
+  }, []);
 
-    gallery.appendChild(item);
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    document.querySelectorAll(".item-hero3").forEach((item, index) => {
-      const animationFactor = items[index].parllaxSpeed;
-      const deltaX = (e.clientX - window.innerWidth / 2) * animationFactor;
-      const deltaY = (e.clientY - window.innerHeight / 2) * animationFactor;
-
-      gsap.to(item, { x: deltaX, y: deltaY, duration: 0.75 });
-    });
-  });
-}, []);
-
-return (
-  <HeroContainer title="Hero 10">
-    <div className="header-hero3">
-      <h1 className='h1-hero3'>Bring order to your <br />creative universe</h1>
-      <button className='button-hero3'>Join Backr00m</button>
-    </div>
-    <div className="gallery-hero3"></div>
-  </HeroContainer>
-);
+  return (
+    <HeroContainer title="Hero 3">
+      <div className="header-hero3">
+        <h1 className='h1-hero3'>Bring order to your <br />creative universe</h1>
+        <button className='button-hero3'>Join Backr00m</button>
+      </div>
+      <div className="gallery-hero3">
+        {items.map((item, index) => (
+          <div className={`item-hero3 item-hero3-${index}`} style={{ top: itemPositions[index].top, left: itemPositions[index].left }} key={index}>
+            <img src={item.img} className="img-hero3" alt="" style={{ opacity: "0.5" }}/>
+            <a href={item.link} dangerouslySetInnerHTML={{ __html: item.icon }}></a>
+          </div>
+        ))}
+      </div>
+    </HeroContainer>
+  );
 };
 
 export default Hero3;

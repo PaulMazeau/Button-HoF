@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import HeroContainer from '../../layouts/HeroContainer'; 
+import HeroContainer from '../../layouts/HeroContainer';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
@@ -11,12 +11,12 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Hero2 = () => {
   useEffect(() => {
-
-
     let wheel = document.querySelector(".wheel");
     let images = gsap.utils.toArray(".wheel__card");
+    let resizeTimeout;
 
     const setup = () => {
+      clearTimeout(resizeTimeout);
       let radius = wheel.offsetWidth / 2;
       let center = wheel.offsetWidth / 2;
       let total = images.length;
@@ -54,10 +54,13 @@ const Hero2 = () => {
     });
 
     setup();
-    window.addEventListener("resize", setup);
+    window.addEventListener("resize", () => {
+      resizeTimeout = setTimeout(setup, 150);
+    });
 
     // Cleanup function
     return () => {
+      clearTimeout(resizeTimeout);
       ScrollTrigger.getAll().forEach(instance => instance.kill());
       window.removeEventListener("resize", setup);
     };
@@ -66,21 +69,21 @@ const Hero2 = () => {
   return (
     <HeroContainer title="Hero 2">
       <div className="container-animation">
-      <div className="header-scroll">
-        <h1>
-          Human stories, <br />
-          Superhuman audiovisuals
-        </h1>
-      </div>
-      <section className="slider-section">
-        <div className="wheel">
-          {Array.from({ length: 30 }, (_, i) => (
-            <div className="wheel__card" key={i}>
-              <img src={`./images/${String(i % 10 + 1).padStart(2, '0')}.webp`} alt={`Image ${i + 1}`} />
-            </div>
-          ))}
+        <div className="header-scroll">
+          <h1>
+            Human stories, <br />
+            Superhuman audiovisuals
+          </h1>
         </div>
-      </section>
+        <section className="slider-section">
+          <div className="wheel">
+            {Array.from({ length: 30 }, (_, i) => (
+              <div className="wheel__card" key={i}>
+                <img src={`./images/${String(i % 10 + 1).padStart(2, '0')}.webp`} alt={`Image ${i + 1}`} />
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </HeroContainer>
   );
