@@ -4,7 +4,7 @@ export default function Filter7() {
   const sketchRef = useRef(null);
   const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
-  let p5Instance = useRef(null); // Utilise useRef pour stocker l'instance p5
+  let p5Instance = useRef(null); 
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
@@ -20,7 +20,7 @@ export default function Filter7() {
             const { offsetWidth: w, offsetHeight: h } = containerRef.current;
             s.createCanvas(w, h);
             video = s.createCapture(s.VIDEO);
-            video.size(w / sampleSize, h / sampleSize); // Ajuster la taille de la vidéo pour la performance
+            video.size(w / sampleSize, h / sampleSize);
             video.hide();
           };
 
@@ -39,7 +39,7 @@ export default function Filter7() {
                 
                 s.fill(255);
                 s.noStroke();
-                s.textSize(sampleSize * 1.5); // Ajuster la taille du texte pour correspondre à sampleSize
+                s.textSize(sampleSize * 1.5); // Adapt la taille du texte pour correspondre à sampleSize
                 s.text(asciiDensity.charAt(densityCharIndex), x * sampleSize, y * sampleSize);
               }
             }
@@ -53,7 +53,7 @@ export default function Filter7() {
       });
     }
 
-    // Fonction de nettoyage
+    // Clean Up
     return () => {
       if (p5Instance.current) {
         p5Instance.current.remove(); // Nettoie l'instance de p5

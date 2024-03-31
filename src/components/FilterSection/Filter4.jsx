@@ -4,7 +4,7 @@ export default function Filter4() {
   const sketchRef = useRef(null);
   const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
-  let p5Instance = useRef(null); // Utilisation de useRef pour stocker l'instance p5
+  let p5Instance = useRef(null); 
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
@@ -61,7 +61,7 @@ export default function Filter4() {
       });
     }
 
-    // Fonction de nettoyage
+    // Clean Up
     return () => {
       if (p5Instance.current) {
         p5Instance.current.remove(); // Assurer le nettoyage de l'instance de p5

@@ -4,7 +4,7 @@ export default function Filter3() {
   const sketchRef = useRef(null);
   const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
-  let p5Instance = useRef(null); // Pour stocker l'instance de p5
+  let p5Instance = useRef(null); 
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
@@ -19,7 +19,7 @@ export default function Filter3() {
             s.createCanvas(w, h);
             video = s.createCapture(s.VIDEO);
             video.size(w, h);
-            video.hide(); // Cache l'élément vidéo HTML pour utiliser le canvas p5
+            video.hide();
           };
 
           s.draw = () => {
@@ -31,7 +31,7 @@ export default function Filter3() {
         };
 
         if (p5Instance.current) {
-          p5Instance.current.remove(); // Supprime l'instance précédente avant d'en créer une nouvelle
+          p5Instance.current.remove(); // Supprime l'instance précédente p5
         }
 
         p5Instance.current = new p5.default(sketch, sketchRef.current);

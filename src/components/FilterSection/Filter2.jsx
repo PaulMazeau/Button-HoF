@@ -4,7 +4,7 @@ export default function Filter2() {
   const sketchRef = useRef(null);
   const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
-  let p5Instance = useRef(null); // Pour stocker l'instance de p5
+  let p5Instance = useRef(null); 
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
@@ -41,7 +41,7 @@ export default function Filter2() {
         };
 
         if (p5Instance.current) {
-          p5Instance.current.remove(); // Supprime l'instance précédente avant d'en créer une nouvelle
+          p5Instance.current.remove(); // Supprime l'instance précédente p5js
         }
 
         p5Instance.current = new p5.default(sketch, sketchRef.current);

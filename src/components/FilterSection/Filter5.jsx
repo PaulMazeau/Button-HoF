@@ -4,7 +4,7 @@ export default function Filter5() {
   const sketchRef = useRef(null);
   const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
-  let p5Instance = useRef(null); // Utilise useRef pour stocker l'instance p5
+  let p5Instance = useRef(null); 
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
@@ -19,7 +19,7 @@ export default function Filter5() {
             s.createCanvas(w, h);
             video = s.createCapture(s.VIDEO);
             video.size(w, h);
-            video.hide(); // Cache l'élément vidéo HTML pour utiliser le canvas p5
+            video.hide();
           };
 
           s.draw = () => {
@@ -34,7 +34,6 @@ export default function Filter5() {
                 const b = video.pixels[index + 2];
                 // Conversion en niveaux de gris
                 const gray = (r + g + b) / 3;
-                // Application d'un effet de seuil pour augmenter le contraste
                 const thresholdValue = 128;
                 const binaryValue = (gray > thresholdValue) ? 255 : 0;
 
@@ -55,7 +54,7 @@ export default function Filter5() {
       });
     }
 
-    // Fonction de nettoyage
+    // Clean Up
     return () => {
       if (p5Instance.current) {
         p5Instance.current.remove(); // Nettoie l'instance de p5
