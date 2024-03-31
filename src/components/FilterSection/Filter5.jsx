@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function Filter5() {
-  const sketchRef = useRef();
-  const containerRef = useRef();
+  const sketchRef = useRef(null);
+  const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
+  let p5Instance = useRef(null); // Utilise useRef pour stocker l'instance p5
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
+
     if (isClient) {
       import('p5').then((p5) => {
         const sketch = (s) => {
@@ -30,10 +32,8 @@ export default function Filter5() {
                 const r = video.pixels[index + 0];
                 const g = video.pixels[index + 1];
                 const b = video.pixels[index + 2];
-                
                 // Conversion en niveaux de gris
                 const gray = (r + g + b) / 3;
-                
                 // Application d'un effet de seuil pour augmenter le contraste
                 const thresholdValue = 128;
                 const binaryValue = (gray > thresholdValue) ? 255 : 0;
@@ -48,9 +48,19 @@ export default function Filter5() {
           };
         };
 
-        new p5.default(sketch, sketchRef.current);
+        if (p5Instance.current) {
+          p5Instance.current.remove(); // Supprime l'instance précédente de p5
+        }
+        p5Instance.current = new p5.default(sketch, sketchRef.current);
       });
     }
+
+    // Fonction de nettoyage
+    return () => {
+      if (p5Instance.current) {
+        p5Instance.current.remove(); // Nettoie l'instance de p5
+      }
+    };
   }, [isClient]);
 
   return (

@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function Filter4() {
-  const sketchRef = useRef();
-  const containerRef = useRef();
+  const sketchRef = useRef(null);
+  const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
+  let p5Instance = useRef(null); // Utilisation de useRef pour stocker l'instance p5
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
+
     if (isClient) {
       import('p5').then((p5) => {
         const sketch = (s) => {
@@ -30,7 +32,6 @@ export default function Filter4() {
                 const r = video.pixels[index + 0];
                 const g = video.pixels[index + 1];
                 const b = video.pixels[index + 2];
-
                 const bright = (r + g + b) / 3;
 
                 if (bright < 85) {
@@ -53,9 +54,19 @@ export default function Filter4() {
           };
         };
 
-        new p5.default(sketch, sketchRef.current);
+        if (p5Instance.current) {
+          p5Instance.current.remove(); // Supprimer l'instance précédente de p5
+        }
+        p5Instance.current = new p5.default(sketch, sketchRef.current);
       });
     }
+
+    // Fonction de nettoyage
+    return () => {
+      if (p5Instance.current) {
+        p5Instance.current.remove(); // Assurer le nettoyage de l'instance de p5
+      }
+    };
   }, [isClient]);
 
   return (

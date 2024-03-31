@@ -4,6 +4,8 @@ export default function Filter8() {
   const sketchRef = useRef();
   const containerRef = useRef();
   const [isClient, setIsClient] = useState(false);
+  let p5Instance = useRef(null); // Utilise useRef pour stocker l'instance p5
+
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
@@ -46,9 +48,19 @@ export default function Filter8() {
           };
         };
 
-        new p5.default(sketch, sketchRef.current);
+        if (p5Instance.current) {
+          p5Instance.current.remove(); // Supprimer l'instance précédente de p5
+        }
+        p5Instance.current = new p5.default(sketch, sketchRef.current);
       });
     }
+
+    // Fonction de nettoyage
+    return () => {
+      if (p5Instance.current) {
+        p5Instance.current.remove(); // Nettoie l'instance de p5
+      }
+    };
   }, [isClient]);
 
   return (

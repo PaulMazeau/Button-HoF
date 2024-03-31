@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function Filter7() {
-  const sketchRef = useRef();
-  const containerRef = useRef();
+  const sketchRef = useRef(null);
+  const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
+  let p5Instance = useRef(null); // Utilise useRef pour stocker l'instance p5
 
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
+
     if (isClient) {
       import('p5').then((p5) => {
         const sketch = (s) => {
@@ -18,41 +20,45 @@ export default function Filter7() {
             const { offsetWidth: w, offsetHeight: h } = containerRef.current;
             s.createCanvas(w, h);
             video = s.createCapture(s.VIDEO);
-            video.size(w, h);
-            video.hide(); // Cache l'élément vidéo HTML pour utiliser le canvas p5
+            video.size(w / sampleSize, h / sampleSize); // Ajuster la taille de la vidéo pour la performance
+            video.hide();
           };
 
           s.draw = () => {
             s.background(25);
-            let w = s.width / video.width;
-            let h = s.height / video.height;
-
             video.loadPixels();
 
-            for (let x = 0; x < video.width; x += sampleSize) {
-              for (let y = 0; y < video.height; y += sampleSize) {
+            for (let x = 0; x < video.width; x++) {
+              for (let y = 0; y < video.height; y++) {
                 const pixelPos = (x + y * video.width) * 4;
                 const r = video.pixels[pixelPos + 0];
                 const g = video.pixels[pixelPos + 1];
                 const b = video.pixels[pixelPos + 2];
-                const avg_brightness = (r + g + b) / 3;
-
+                const avgBrightness = (r + g + b) / 3;
+                const densityCharIndex = s.floor(s.map(avgBrightness, 0, 255, asciiDensity.length - 1, 0));
+                
                 s.fill(255);
                 s.noStroke();
-
-                const density_charIndex = s.floor(s.map(avg_brightness, 10, 220, asciiDensity.length, 0));
-
-                s.textSize(w * sampleSize);
-                s.textAlign(s.CENTER, s.CENTER);
-                s.text(asciiDensity.charAt(density_charIndex), x * w + w * 0.5, y * h + h * 0.5);
+                s.textSize(sampleSize * 1.5); // Ajuster la taille du texte pour correspondre à sampleSize
+                s.text(asciiDensity.charAt(densityCharIndex), x * sampleSize, y * sampleSize);
               }
             }
           };
         };
 
-        new p5.default(sketch, sketchRef.current);
+        if (p5Instance.current) {
+          p5Instance.current.remove(); // Supprimer l'instance précédente de p5
+        }
+        p5Instance.current = new p5.default(sketch, sketchRef.current);
       });
     }
+
+    // Fonction de nettoyage
+    return () => {
+      if (p5Instance.current) {
+        p5Instance.current.remove(); // Nettoie l'instance de p5
+      }
+    };
   }, [isClient]);
 
   return (

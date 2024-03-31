@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function Filter1() {
-  const sketchRef = useRef();
-  const containerRef = useRef();
+  const sketchRef = useRef(null);
+  const containerRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
   const [shapes, setShapes] = useState([]);
-  const [imagesLoaded, setImagesLoaded] = useState(false); // S'assurer que toutes les images sont chargées
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  let p5Instance = useRef(null); // Utilise useRef pour stocker l'instance de p5
 
+  // Charger p5 et les images seulement une fois et nettoyer après utilisation
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
+
     if (isClient) {
       import('p5').then((p5) => {
         const loadImageAsync = (url) => new Promise((resolve) => {
@@ -21,54 +24,64 @@ export default function Filter1() {
           loadImageAsync("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3199e27a-73d4-4ad0-ad41-66bc3fd2f109/dbs64z8-53706708-7b4b-4455-9b83-eb5555eb7fc2.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzMxOTllMjdhLTczZDQtNGFkMC1hZDQxLTY2YmMzZmQyZjEwOVwvZGJzNjR6OC01MzcwNjcwOC03YjRiLTQ0NTUtOWI4My1lYjU1NTVlYjdmYzIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rnCLASN2JVtZmCH8sCW4rW6Zmh6iTFkbLU881Pt5j3I"),
           loadImageAsync("https://media1.giphy.com/media/8UI7yuJAZUemJP8bf4/source.gif"),
         ]).then((loadedImages) => {
-            setShapes(loadedImages);
-            setImagesLoaded(true); // Indiquer que toutes les images sont chargées
-          });
+          setShapes(loadedImages);
+          setImagesLoaded(true);
         });
+      });
+    }
+
+    return () => {
+      if (p5Instance.current) {
+        p5Instance.current.remove(); // Assurer la suppression de l'instance de p5 pour nettoyer
       }
-    }, [isClient]);
-  
-    useEffect(() => {
-      if (isClient && imagesLoaded) { // Assurer que le sketch ne s'exécute que lorsque les images sont chargées
-        import('p5').then((p5) => {
-          const sketch = (s) => {
-            let camera;
-            const vScale = 6;
-            const maxColor = 765; // 255*3
-  
-            s.setup = () => {
-              const { offsetWidth: w, offsetHeight: h } = containerRef.current;
-              s.createCanvas(w, h);
-              camera = s.createCapture(s.VIDEO);
-              camera.size(w, h);
-              camera.hide();
-            };
-  
-            s.draw = () => {
-              if (!shapes.length) return; // Protection supplémentaire pour éviter de dessiner sans images chargées
-  
-              s.clear();
-              camera.loadPixels();
-  
-              for (let y = 0; y < camera.height; y += vScale) {
-                for (let x = 0; x < camera.width; x += vScale) {
-                  const i = (y * camera.width + x) * 4;
-                  const [r, g, b] = [camera.pixels[i], camera.pixels[i + 1], camera.pixels[i + 2]];
-                  let gradientToIndex = s.floor((1 - (r + g + b) / maxColor) * (shapes.length - 1));
-                  s.image(shapes[gradientToIndex], x, y, vScale, vScale);
-                }
-              }
-            };
+    };
+  }, [isClient]);
+
+  useEffect(() => {
+    if (isClient && imagesLoaded) {
+      import('p5').then((p5) => {
+        const sketch = (s) => {
+          let camera;
+          const vScale = 6;
+          const maxColor = 765;
+
+          s.setup = () => {
+            const { offsetWidth: w, offsetHeight: h } = containerRef.current;
+            s.createCanvas(w, h);
+            camera = s.createCapture(s.VIDEO);
+            camera.size(w / vScale, h / vScale); // Ajustement pour la performance
+            camera.hide();
           };
-  
-          new p5.default(sketch, sketchRef.current);
-        });
-      }
-    }, [isClient, imagesLoaded, shapes]); // Dépend de isClient, imagesLoaded, et shapes
-  
-    return (
-      <div className="filter-container" ref={containerRef}>
-        <div ref={sketchRef}></div>
-      </div>
-    );
-  }
+
+          s.draw = () => {
+            if (!shapes.length) return;
+
+            s.clear();
+            camera.loadPixels();
+
+            for (let y = 0; y < camera.height; y += 1) { // Ajustement de l'itération pour correspondre à la taille ajustée de la caméra
+              for (let x = 0; x < camera.width; x += 1) {
+                const i = (y * camera.width + x) * 4;
+                const [r, g, b] = [camera.pixels[i], camera.pixels[i + 1], camera.pixels[i + 2]];
+                let gradientToIndex = s.floor((1 - (r + g + b) / maxColor) * (shapes.length - 1));
+                s.image(shapes[gradientToIndex], x * vScale, y * vScale, vScale, vScale); // Ajuster le placement des images
+              }
+            }
+          };
+        };
+
+        if (p5Instance.current) {
+          p5Instance.current.remove(); // Supprimer l'instance précédente de p5 avant d'en créer une nouvelle
+        }
+
+        p5Instance.current = new p5.default(sketch, sketchRef.current);
+      });
+    }
+  }, [isClient, imagesLoaded, shapes]);
+
+  return (
+    <div className="filter-container" ref={containerRef}>
+      <div ref={sketchRef}></div>
+    </div>
+  );
+}
