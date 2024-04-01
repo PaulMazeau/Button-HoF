@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, useEffect } from 'react';
 import Navbar from './components/NavigationHero';
 import './styles/global.css'
 
@@ -11,14 +11,36 @@ const Hero6 = lazy(() => import('./components/HeroSection/Hero6'));
 const Hero7 = lazy(() => import('./components/HeroSection/Hero7'));
 const Hero8 = lazy(() => import('./components/HeroSection/Hero8'));
 
-const heroes = [Hero1, Hero2, Hero3, Hero4, Hero5, Hero6, Hero7, Hero8];
+const isMobileScreen = () => window.innerWidth < 768; 
 
 function HeroDisplayer() {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+  const [heroes, setHeroes] = useState([Hero1, Hero2, Hero3, Hero4, Hero5, Hero6, Hero7, Hero8]);
+
+  useEffect(() => {
+    const updateHeroesForScreenSize = () => {
+      if (isMobileScreen()) {
+        //Quel Hero on affiche sur mobile
+        setHeroes([Hero1, Hero2, Hero4, Hero5, Hero6, Hero8]);
+      } else {
+        //Quel Hero on affiche sur Desktop
+        setHeroes([Hero1, Hero2, Hero3, Hero4, Hero5, Hero6, Hero7, Hero8]);
+      }
+    };
+
+    updateHeroesForScreenSize();
+    window.addEventListener('resize', updateHeroesForScreenSize);
+
+    //Clean Up
+    return () => {
+      window.removeEventListener('resize', updateHeroesForScreenSize);
+    };
+  }, []);
 
   const goToNextHero = () => {
     setCurrentHeroIndex((index) => (index + 1) % heroes.length);
   };
+
   const goToPreviousHero = () => {
     setCurrentHeroIndex((index) => (index - 1 + heroes.length) % heroes.length);
   };
@@ -30,7 +52,7 @@ function HeroDisplayer() {
       <Navbar onPreviousClick={goToPreviousHero} onNextClick={goToNextHero} />
       <Suspense fallback={
         <div className='loading-container'>
-          <img src={`Loading.png`} alt="Description" className='loading-image'/>
+          <img src={`Loading.png`} alt="Loading" className='loading-image'/>
         </div>
       }>
         <CurrentHero />
